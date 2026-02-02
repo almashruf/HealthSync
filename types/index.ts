@@ -1,12 +1,4 @@
-// types/index.ts
-// ============================================================
-// TYPESCRIPT TYPE DEFINITIONS
-// ============================================================
-// Central place for all app-wide types
-// These will grow as we build out features
-// ============================================================
 
-// User profile type (extends Supabase auth user)
 export interface UserProfile {
   id: string;
   email: string;
@@ -16,14 +8,14 @@ export interface UserProfile {
   updated_at: string;
 }
 
-// API response wrapper type
+
 export interface ApiResponse<T> {
   data: T | null;
   error: string | null;
   success: boolean;
 }
 
-// Pagination type
+
 export interface PaginationParams {
   page: number;
   limit: number;
