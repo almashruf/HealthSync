@@ -11,9 +11,21 @@
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
+/**
+ * Creates a Supabase client for use on the server.
+ * This handles cookie management for authentication.
+ *
+ * @example
+ * // In a Server Component or API route
+ * import { createServerSupabaseClient } from '@/lib/supabase/server'
+ *
+ * async function getData() {
+ *   const supabase = await createServerSupabaseClient()
+ *   const { data } = await supabase.from('table').select()
+ *   return data
+ * }
+ */
 export async function createServerSupabaseClient() {
-  // Get the cookie store from Next.js
-  // This is how we access cookies on the server
   const cookieStore = await cookies();
 
   return createServerClient(
@@ -21,27 +33,18 @@ export async function createServerSupabaseClient() {
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
       cookies: {
-        // GET: Read a cookie value
-        get(name: string) {
-          return cookieStore.get(name)?.value;
+        getAll() {
+          return cookieStore.getAll();
         },
-
-        // SET: Create or update a cookie
-        set(name: string, value: string, options: CookieOptions) {
+        setAll(cookiesToSet) {
           try {
-            cookieStore.set({ name, value, ...options });
-          } catch (error) {
-            // This can fail in Server Components (they're read-only)
-            // That's okay - the middleware will handle it
-          }
-        },
-
-        // REMOVE: Delete a cookie (by setting empty value)
-        remove(name: string, options: CookieOptions) {
-          try {
-            cookieStore.set({ name, value: "", ...options });
-          } catch (error) {
-            // Same as above - middleware handles this
+            cookiesToSet.forEach(({ name, value, options }) =>
+              cookieStore.set(name, value, options),
+            );
+          } catch {
+            // The `setAll` method was called from a Server Component.
+            // This can be ignored if you have middleware refreshing
+            // user sessions.
           }
         },
       },

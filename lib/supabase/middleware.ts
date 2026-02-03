@@ -3,18 +3,19 @@
 // MIDDLEWARE SUPABASE CLIENT
 // ============================================================
 // Special client for Next.js middleware
-// Middleware runs BEFORE every request to check auth status
+// Handles session refresh and cookie management
 // ============================================================
 
-import { createServerClient, type CookieOptions } from "@supabase/ssr";
-import { type NextRequest, NextResponse } from "next/server";
+import { createServerClient } from "@supabase/ssr";
+import { NextResponse, type NextRequest } from "next/server";
 
-export async function createMiddlewareClient(request: NextRequest) {
-  // Start with a response that continues to the requested page
-  let response = NextResponse.next({
-    request: {
-      headers: request.headers,
-    },
+/**
+ * Updates the Supabase session in middleware.
+ * This ensures the user stays logged in across requests.
+ */
+export async function updateSession(request: NextRequest) {
+  let supabaseResponse = NextResponse.next({
+    request,
   });
 
   const supabase = createServerClient(
@@ -22,48 +23,29 @@ export async function createMiddlewareClient(request: NextRequest) {
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
       cookies: {
-        get(name: string) {
-          return request.cookies.get(name)?.value;
+        getAll() {
+          return request.cookies.getAll();
         },
-        set(name: string, value: string, options: CookieOptions) {
-          // Update the request cookies
-          request.cookies.set({
-            name,
-            value,
-            ...options,
+        setAll(cookiesToSet) {
+          cookiesToSet.forEach(({ name, value, options }) =>
+            request.cookies.set(name, value),
+          );
+          supabaseResponse = NextResponse.next({
+            request,
           });
-          // Update the response cookies (so browser gets updated cookies)
-          response = NextResponse.next({
-            request: {
-              headers: request.headers,
-            },
-          });
-          response.cookies.set({
-            name,
-            value,
-            ...options,
-          });
-        },
-        remove(name: string, options: CookieOptions) {
-          request.cookies.set({
-            name,
-            value: "",
-            ...options,
-          });
-          response = NextResponse.next({
-            request: {
-              headers: request.headers,
-            },
-          });
-          response.cookies.set({
-            name,
-            value: "",
-            ...options,
-          });
+          cookiesToSet.forEach(({ name, value, options }) =>
+            supabaseResponse.cookies.set(name, value, options),
+          );
         },
       },
     },
   );
 
-  return { supabase, response };
+  // IMPORTANT: Do NOT remove this line
+  // It refreshes the auth token and keeps the user logged in
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  return { supabaseResponse, user };
 }

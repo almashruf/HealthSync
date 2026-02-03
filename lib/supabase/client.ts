@@ -9,16 +9,24 @@
 // - Any client-side code
 // ============================================================
 
-import { createBrowserClient } from "@supabase/ssr";
+import { createBrowserClient } from '@supabase/ssr'
 
-// We create a function that returns a new client
-// This ensures each component gets a fresh client instance
+/**
+ * Creates a Supabase client for use in the browser.
+ * Call this function in client components to interact with Supabase.
+ * 
+ * @example
+ * 'use client'
+ * import { createClient } from '@/lib/supabase/client'
+ * 
+ * function MyComponent() {
+ *   const supabase = createClient()
+ *   // Use supabase...
+ * }
+ */
 export function createClient() {
   return createBrowserClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-  );
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  )
 }
-
-// The ! after process.env tells TypeScript: "Trust me, this exists"
-// This is safe because our app won't work without these anyway
