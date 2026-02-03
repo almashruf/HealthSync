@@ -2,28 +2,21 @@
 // ============================================================
 // UTILITY FUNCTIONS
 // ============================================================
-// Reusable helper functions used throughout the app
-// ============================================================
 
-import { type ClassValue, clsx } from "clsx";
+import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
 /**
- * Combines class names intelligently
- * - Merges Tailwind classes properly (no conflicts)
- * - Handles conditional classes
- *
- * Example:
- * cn("px-4 py-2", isActive && "bg-blue-500", "px-6")
- * Result: "py-2 px-6 bg-blue-500" (px-6 overrides px-4)
+ * Combines class names using clsx and tailwind-merge.
+ * This is the core utility used by all Shadcn components.
  */
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
 /**
- * Format a date to readable string
- * Example: formatDate(new Date()) → "Jan 15, 2024"
+ * Format a date to a readable string.
+ * @example formatDate(new Date()) // "Jan 15, 2024"
  */
 export function formatDate(date: Date | string): string {
   return new Date(date).toLocaleDateString("en-US", {
@@ -34,8 +27,8 @@ export function formatDate(date: Date | string): string {
 }
 
 /**
- * Format a date with time
- * Example: formatDateTime(new Date()) → "Jan 15, 2024, 3:30 PM"
+ * Format a date with time.
+ * @example formatDateTime(new Date()) // "Jan 15, 2024, 3:30 PM"
  */
 export function formatDateTime(date: Date | string): string {
   return new Date(date).toLocaleDateString("en-US", {
@@ -48,17 +41,15 @@ export function formatDateTime(date: Date | string): string {
 }
 
 /**
- * Delay execution (useful for loading states, testing)
- * Example: await sleep(1000) // wait 1 second
+ * Delay execution for a specified time.
+ * @example await sleep(1000) // Wait 1 second
  */
 export function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 /**
- * Safely parse JSON with fallback
- * Example: safeJsonParse('{"a":1}', {}) → { a: 1 }
- * Example: safeJsonParse('invalid', {}) → {}
+ * Safely parse JSON with a fallback value.
  */
 export function safeJsonParse<T>(json: string, fallback: T): T {
   try {
@@ -69,8 +60,8 @@ export function safeJsonParse<T>(json: string, fallback: T): T {
 }
 
 /**
- * Truncate text with ellipsis
- * Example: truncate("Hello World", 5) → "Hello..."
+ * Truncate text with ellipsis.
+ * @example truncate("Hello World", 5) // "Hello..."
  */
 export function truncate(str: string, length: number): string {
   if (str.length <= length) return str;
@@ -78,18 +69,19 @@ export function truncate(str: string, length: number): string {
 }
 
 /**
- * Capitalize first letter
- * Example: capitalize("hello") → "Hello"
+ * Capitalize the first letter of a string.
  */
 export function capitalize(str: string): string {
+  if (!str) return "";
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
 /**
- * Generate initials from name
- * Example: getInitials("John Doe") → "JD"
+ * Get initials from a name.
+ * @example getInitials("John Doe") // "JD"
  */
 export function getInitials(name: string): string {
+  if (!name) return "";
   return name
     .split(" ")
     .map((part) => part.charAt(0))
