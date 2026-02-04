@@ -320,9 +320,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ========================================= */}
-      {/* FOOTER */}
-      {/* ========================================= */}
       <footer className="border-t py-12">
         <div className="container mx-auto max-w-7xl px-4">
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
