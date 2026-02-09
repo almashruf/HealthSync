@@ -56,8 +56,6 @@ export function useAuth() {
 
     initializeAuth();
 
-    // Subscribe to auth state changes
-    // This fires when user logs in, logs out, or token refreshes
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange(async (event, session) => {
@@ -70,14 +68,11 @@ export function useAuth() {
         isAuthenticated: !!session?.user,
       });
 
-      // Refresh the page data when auth state changes
-      // This ensures server components get the new auth state
       if (event === "SIGNED_IN" || event === "SIGNED_OUT") {
         router.refresh();
       }
     });
 
-    // Cleanup subscription on unmount
     return () => {
       subscription.unsubscribe();
     };
