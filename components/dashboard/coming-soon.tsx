@@ -3,23 +3,67 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Construction, ArrowLeft } from "lucide-react";
+import {
+  Construction,
+  ArrowLeft,
+  Stethoscope,
+  Activity,
+  FileText,
+  UtensilsCrossed,
+  ClipboardList,
+  BookOpen,
+  Dumbbell,
+  BarChart3,
+  Bed,
+  Smile,
+  Sparkles,
+  Pill,
+  Calendar,
+  UserSearch,
+  Users,
+  MessageSquare,
+  Settings,
+  type LucideIcon,
+} from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import type { LucideIcon } from "lucide-react";
+
+// Map string names to actual icon components
+const iconMap: Record<string, LucideIcon> = {
+  construction: Construction,
+  stethoscope: Stethoscope,
+  activity: Activity,
+  "file-text": FileText,
+  "utensils-crossed": UtensilsCrossed,
+  "clipboard-list": ClipboardList,
+  "book-open": BookOpen,
+  dumbbell: Dumbbell,
+  "bar-chart": BarChart3,
+  bed: Bed,
+  smile: Smile,
+  sparkles: Sparkles,
+  pill: Pill,
+  calendar: Calendar,
+  "user-search": UserSearch,
+  users: Users,
+  "message-square": MessageSquare,
+  settings: Settings,
+};
 
 type ComingSoonProps = {
   title: string;
   description?: string;
-  icon?: LucideIcon;
+  iconName?: string;
 };
 
 export function ComingSoon({
   title,
   description = "This feature is coming soon. We're working hard to bring it to you!",
-  icon: Icon = Construction,
+  iconName = "construction",
 }: ComingSoonProps) {
+  const Icon = iconMap[iconName] || Construction;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
