@@ -76,7 +76,7 @@ const cardVariants = {
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.08, duration: 0.4, ease: "easeOut" },
+    transition: { delay: i * 0.08, duration: 0.4, ease: "easeOut" as const },
   }),
 };
 
@@ -708,8 +708,8 @@ export function WeeklyStatsChart({ data }: WeeklyStatsChartProps) {
                     boxShadow: "0 4px 6px -1px rgba(0,0,0,0.1)",
                     fontSize: "12px",
                   }}
-                  formatter={(value: number) => [
-                    `${value.toLocaleString()}${activeConfig.unit}`,
+                  formatter={(value) => [
+                    `${Number(value ?? 0).toLocaleString()}${activeConfig.unit}`,
                     activeConfig.label,
                   ]}
                 />
