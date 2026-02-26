@@ -1,4 +1,12 @@
-// components/dashboard/index.ts
-
-export { DashboardHome } from './dashboard-home'
-export { ComingSoon } from './coming-soon'
+export { ComingSoon } from "./coming-soon";
+export { DashboardHome } from "./dashboard-home";
+export { DashboardSkeleton } from "./dashboard-skeleton";
+export {
+  WelcomeCard,
+  HealthScoreCard,
+  QuickActionsCard,
+  TodaysSummaryCard,
+  UpcomingCard,
+  RecentActivityCard,
+  WeeklyStatsChart,
+} from "./widgets";
