@@ -1,11 +1,6 @@
-// lib/auth/actions.ts
+
 "use server";
 
-/**
- * Server Actions are functions that run on the server.
- * They're called from client components but execute server-side.
- * This is secure because sensitive operations happen on the server.
- */
 
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
