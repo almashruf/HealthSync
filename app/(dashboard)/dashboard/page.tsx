@@ -1,10 +1,9 @@
-import { DashboardHome } from "@/components/dashboard";
+// app/(dashboard)/dashboard/page.tsx
 
-export const metadata = {
-  title: "Dashboard | HealthSync",
-  description: "Your personal health and wellness dashboard",
-};
+'use client'
+
+import { DashboardHome } from '@/components/dashboard/dashboard-home'
 
 export default function DashboardPage() {
-  return <DashboardHome />;
+  return <DashboardHome />
 }
