@@ -7,6 +7,8 @@ import { Heart } from "lucide-react";
  * It provides a centered card design with the HealthSync branding
  */
 
+export const dynamic = 'force-dynamic'
+
 export default function AuthLayout({
   children,
 }: {
