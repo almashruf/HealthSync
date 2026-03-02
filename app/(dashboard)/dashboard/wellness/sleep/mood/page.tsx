@@ -12,7 +12,7 @@ export default function MoodPage() {
     <ComingSoon
       title="Mood Check-in"
       description="Track your emotional well-being, identify patterns, and build healthy habits."
-      icon={Smile}
+      iconName="Smile"
     />
   );
 }

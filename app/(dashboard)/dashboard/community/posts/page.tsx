@@ -12,7 +12,7 @@ export default function PostsPage() {
     <ComingSoon
       title="My Posts"
       description="View and manage your community posts, comments, and interactions."
-      icon={MessageSquare}
+      iconName="MessageSquare"
     />
   );
 }

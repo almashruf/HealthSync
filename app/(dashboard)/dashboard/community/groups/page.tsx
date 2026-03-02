@@ -12,7 +12,7 @@ export default function GroupsPage() {
     <ComingSoon
       title="Support Groups"
       description="Join health communities, share experiences, and find support from others."
-      icon={Users}
+      iconName="user"
     />
   );
 }

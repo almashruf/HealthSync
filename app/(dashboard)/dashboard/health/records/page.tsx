@@ -12,7 +12,7 @@ export default function RecordsPage() {
     <ComingSoon
       title="Health Records"
       description="View and manage your health records, test results, and medical history in one place."
-      icon={FileText}
+      iconName="FileText"
     />
   );
 }

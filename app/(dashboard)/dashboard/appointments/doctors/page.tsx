@@ -12,7 +12,7 @@ export default function FindDoctorsPage() {
     <ComingSoon
       title="Find Doctors"
       description="Search for healthcare providers, read reviews, and book appointments."
-      icon={UserSearch}
+      iconName="book-open"
     />
   );
 }

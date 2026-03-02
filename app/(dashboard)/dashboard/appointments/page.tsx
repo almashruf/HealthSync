@@ -12,7 +12,7 @@ export default function AppointmentsPage() {
     <ComingSoon
       title="My Appointments"
       description="Schedule, manage, and track your medical appointments in one place."
-      icon={Calendar}
+      iconName="book-open"
     />
   );
 }

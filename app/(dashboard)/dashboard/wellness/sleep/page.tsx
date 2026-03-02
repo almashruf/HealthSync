@@ -12,7 +12,7 @@ export default function SleepPage() {
     <ComingSoon
       title="Sleep Tracking"
       description="Log your sleep patterns, track quality, and get insights for better rest."
-      icon={Bed}
+      iconName="Bed"
     />
   );
 }

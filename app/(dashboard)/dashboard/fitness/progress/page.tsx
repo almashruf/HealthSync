@@ -12,7 +12,8 @@ export default function FitnessProgressPage() {
     <ComingSoon
       title="Fitness Progress"
       description="Visualize your fitness journey with detailed charts and progress tracking."
-      icon={BarChart3}
+      iconName="BarChart3"
+      
     />
   );
 }

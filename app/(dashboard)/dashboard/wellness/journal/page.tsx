@@ -12,7 +12,7 @@ export default function JournalPage() {
     <ComingSoon
       title="Wellness Journal"
       description="Write daily reflections, track gratitude, and maintain your mental wellness."
-      icon={Sparkles}
+      iconName="Sparkles"
     />
   );
 }

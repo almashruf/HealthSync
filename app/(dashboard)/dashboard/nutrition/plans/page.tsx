@@ -12,7 +12,7 @@ export default function MealPlansPage() {
     <ComingSoon
       title="Meal Plans"
       description="Get personalized meal plans tailored to your dietary preferences and health goals."
-      icon={ClipboardList}
+      iconName="ClipboardList"
     />
   );
 }

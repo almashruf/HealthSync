@@ -12,7 +12,7 @@ export default function FoodLogPage() {
     <ComingSoon
       title="Food Log"
       description="Log your meals, track calories, macros, and get AI-powered nutritional insights."
-      icon={UtensilsCrossed}
+      iconName="UtensilsCrossed"
     />
   )
 }

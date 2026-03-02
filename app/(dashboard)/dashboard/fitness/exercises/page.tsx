@@ -12,7 +12,8 @@ export default function ExercisesPage() {
     <ComingSoon
       title="Exercise Library"
       description="Browse our library of exercises with instructions, videos, and muscle group targeting."
-      icon={Activity}
+      //icon={Activity}
+      iconName="Activity"
     />
   );
 }

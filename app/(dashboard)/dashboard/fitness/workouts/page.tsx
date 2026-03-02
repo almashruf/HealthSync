@@ -12,7 +12,8 @@ export default function WorkoutsPage() {
     <ComingSoon
       title="Workouts"
       description="Create custom workout plans, track sessions, and monitor your fitness progress."
-      icon={Dumbbell}
+      iconName="Dumbbell"
+
     />
   );
 }

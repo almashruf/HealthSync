@@ -12,7 +12,7 @@ export default function VitalsPage() {
     <ComingSoon
       title="Vitals Tracking"
       description="Track your blood pressure, heart rate, temperature, and other vital signs over time."
-      icon={Activity}
+      iconName="Activity"
     />
   );
 }

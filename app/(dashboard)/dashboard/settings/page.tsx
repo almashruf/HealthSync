@@ -12,7 +12,7 @@ export default function SettingsPage() {
     <ComingSoon
       title="Settings"
       description="Manage your profile, preferences, notifications, and account settings."
-      icon={Settings}
+      iconName="Settings"
     />
   );
 }

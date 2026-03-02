@@ -12,7 +12,7 @@ export default function MedicationsPage() {
     <ComingSoon
       title="Medications"
       description="Manage your medications, set reminders, and track your adherence."
-      icon={Pill}
+      iconName="Pill"
     />
   );
 }
